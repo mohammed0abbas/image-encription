@@ -2,19 +2,8 @@ from PIL import Image
 
 
 
-def skew_tent_map(x, r):
-  return r * abs(x)
-
-
-
-
-
-
-
 ##  open file image from path
 image_org = Image.open('./test1.png')
-
-
 
 
 ## copy 3 varibals from orginal image
@@ -23,6 +12,7 @@ img_red = image_org.copy()
 img_green = image_org.copy()
 
 img_blue = image_org.copy()
+
 
 img_enc = image_org.copy()
 
