@@ -127,7 +127,7 @@ def Encrypt(path, r, g, b):
     blue = encript_image_blue(blue, b)
     
     width, height = image.size
-    encrypted_image = Image.new("RGB", (width, height))
+    encrypted_image = Image.new(image.mode, image.size)
     for i in range(width):
         for j in range(height):
             pixel_red = red.getpixel((i, j))

@@ -1,6 +1,8 @@
 from tkinter import * 
 from tkinter import filedialog as fd
 from encript import * 
+from equations import *
+from formoutput import *
 
 
 
@@ -60,8 +62,14 @@ def Encrypted():
     
     print(r,g,b)
     img = Encrypt(entery.cget('text'), r, g, b)
-
-    img.show()
+    snr = calculate_snr(img)
+    msc = calculate_msc(img)
+    psnr = calculate_psnr(entery.cget('text'), img)
+    sim = calculate_similarity(entery.cget('text'), img)
+    
+    base.destroy()
+    open_form_output(img,snr,psnr,msc,sim)
+    
     
 
 Button(base, text ='Encrypt', command = Encrypted).place(x=100,y=250)

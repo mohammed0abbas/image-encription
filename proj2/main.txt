@@ -1,0 +1,5 @@
+snr 
+hestogram
+msc
+psnr
+similarity
