@@ -2,6 +2,7 @@ from PIL import Image
 import numpy as np
 
 
+
 def skew_tent_map(x, r=5.0):
     return r * abs(x)
 

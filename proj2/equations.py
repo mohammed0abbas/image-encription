@@ -1,6 +1,9 @@
 import numpy as np
 from PIL import Image
 from skimage.metrics import structural_similarity as ssim
+from math import log10, sqrt
+import cv2
+
 
 def calculate_snr(image):
     # Load the image
@@ -37,23 +40,20 @@ def calculate_msc(image):
 
 
 def calculate_psnr(img1_path, image):
+   
     # Load the images
     img1 = np.array(Image.open(img1_path))
     img2 = np.array(image)
+  
 
-    # Calculate the mean squared error (MSE) between the images
-    img1 = np.ones(img1.shape, dtype=np.float32)
-    img2 = np.ones(img2.shape, dtype=np.float32)
-    dif =  img1 - img2
-    mse = np.mean(dif**2)
-
-    # Calculate the maximum pixel value
+    mse = np.mean((img1 - img2) ** 2)
+    if(mse == 0):  # MSE is zero means no noise is present in the signal .
+                  # Therefore PSNR have no importance.
+        return 100
     max_pixel = 255.0
-
-    # Calculate the PSNR in decibels (dB)
-    psnr = 20 * np.log10(max_pixel / np.sqrt(mse))
-
+    psnr = 20 * log10(max_pixel / sqrt(mse))
     return psnr
+  
 
 
 

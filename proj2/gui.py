@@ -3,6 +3,7 @@ from tkinter import filedialog as fd
 from encript import * 
 from equations import *
 from formoutput import *
+import histogram as hist
 
 
 
@@ -10,7 +11,7 @@ from formoutput import *
 filed = ''
 
 base = Tk() 
-base.geometry('500x400')  
+base.geometry('500x350')  
 
 
 
@@ -66,9 +67,11 @@ def Encrypted():
     msc = calculate_msc(img)
     psnr = calculate_psnr(entery.cget('text'), img)
     sim = calculate_similarity(entery.cget('text'), img)
+    img_org = Image.open(entery.cget('text'))
     
     base.destroy()
-    open_form_output(img,snr,psnr,msc,sim)
+    open_form_output(img_org,img,snr,psnr,msc,sim)
+    
     
     
 
